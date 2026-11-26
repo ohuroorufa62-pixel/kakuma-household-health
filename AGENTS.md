@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Architecture Decisions
+
+- Keep Hafisuhu clinical rules (MUAC classification thresholds, indicator calculations, and input validation) as pure functions in `src/lib/hafisuhu.ts` so field forms and unit tests share a single source of truth.
+- Persist field records in browser `localStorage` via `src/hooks/use-hafisuhu-store.ts` hydrated in `useEffect`, seeding initial Kakuma records only when storage is absent so emptied registers stay empty.
